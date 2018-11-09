@@ -8,3 +8,8 @@ def connect_to_db
     password: ENV['DB_PASSWORD'],
     dbname: ENV['DB_NAME'])
 end
+
+def write_to_db(table)
+  value = table.map { |t| "('#{t[0]}', #{t[1]}, #{t[2]})" }.join(',')
+  connect_to_db.exec("INSERT INTO shopping_list (name, count, price) VALUES #{value}")
+end
