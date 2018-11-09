@@ -16,4 +16,8 @@ class Database
     value = table.map { |t| "('#{t[0]}', #{t[1]}, #{t[2]})" }.join(',')
     @db.exec("INSERT INTO shopping_list (name, count, price) VALUES #{value}")
   end
+
+  def clear_table
+    db.exec('TRUNCATE TABLE shopping_list')
+  end
 end
