@@ -15,6 +15,7 @@ class Site
   def add_to_table(values)
     @driver.find_element(id: :open).click
 
+
     values.each do |value|
       @driver.find_element(id: :name).send_keys (value['name'])
       @driver.find_element(id: :count).send_keys (value['count'])
@@ -27,8 +28,8 @@ class Site
   end
 
   def clear_text
-    @driver.find_element(id: :name).clear
-    @driver.find_element(id: :count).clear
-    @driver.find_element(id: :price).clear
+    id = [:name, :count, :price]
+
+    id.map{ |i|  @driver.find_element(id: i).clear }
   end
 end
