@@ -18,4 +18,8 @@ class Database
   def clear_table
     @db.exec('TRUNCATE TABLE shopping_list')
   end
+
+  def read_from_db
+    @db.exec('SELECT * FROM shopping_list')
+  end
 end
