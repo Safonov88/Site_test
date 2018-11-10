@@ -2,8 +2,6 @@ class Database
   require 'pg'
   require 'dotenv/load'
 
-  attr_reader :db
-
   def initialize
     @db = PG.connect(host: ENV['DB_HOST'],
       port: ENV['DB_PORT'],
@@ -18,6 +16,6 @@ class Database
   end
 
   def clear_table
-    db.exec('TRUNCATE TABLE shopping_list')
+    @db.exec('TRUNCATE TABLE shopping_list')
   end
 end
