@@ -3,8 +3,8 @@ require 'selenium-webdriver'
 class Site
   URL = 'http://tereshkova.test.kavichki.com/'
 
-  def initialize
-    @driver = Selenium::WebDriver.for :chrome
+  def initialize(driver)
+    @driver = driver
 
     @driver.get(URL)
   end
