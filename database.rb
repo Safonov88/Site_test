@@ -19,7 +19,7 @@ class Database
     @db.exec('TRUNCATE TABLE shopping_list')
   end
 
-  def read_from_db
-    @db.exec('SELECT * FROM shopping_list')
+  def read(table = 'shopping_list')
+    @db.exec("SELECT * FROM #{table}")
   end
 end
