@@ -24,7 +24,7 @@ class Site
 
       @driver.find_element(id: :add).click
 
-      clear_text
+      reset_form
     end
   end
 
