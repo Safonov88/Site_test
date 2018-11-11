@@ -1,6 +1,6 @@
-class Site
-  require 'selenium-webdriver'
+require 'selenium-webdriver'
 
+class Site
   def initialize
     @driver = Selenium::WebDriver.for :chrome
 

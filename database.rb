@@ -1,7 +1,7 @@
-class Database
-  require 'pg'
-  require 'dotenv/load'
+require 'pg'
+require 'dotenv/load'
 
+class Database
   def initialize
     @db = PG.connect(host: ENV['DB_HOST'],
       port: ENV['DB_PORT'],
