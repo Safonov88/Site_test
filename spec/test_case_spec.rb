@@ -40,21 +40,21 @@ describe 'Correct worcking table to the site' do
     end
 
     it 'checks text fields name to clear' do
-      driver.find_element(id: :name).send_keys ('testname')
+      driver.find_element(id: :name).send_keys('testname')
       driver.find_element(id: :add).click
 
       expect(driver.find_element(id: :name).attribute('value')).to be_empty
     end
 
      it 'checks text fields count to clear' do
-      driver.find_element(id: :count).send_keys (123456789)
+      driver.find_element(id: :count).send_keys(123456789)
       driver.find_element(id: :add).click
 
       expect(driver.find_element(id: :count).attribute('value')).to be_empty
     end
 
      it 'checks text fields price to clear' do
-      driver.find_element(id: :price).send_keys (123456789.98)
+      driver.find_element(id: :price).send_keys(123456789.98)
       driver.find_element(id: :add).click
 
       expect(driver.find_element(id: :price).attribute('value')).to be_empty
