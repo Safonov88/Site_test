@@ -45,6 +45,19 @@ describe 'UI site testing' do
         .from(row_number_two).to(row_number_three)
     end
   end
+
+  context 'when submited empty values' do
+    it 'checks that a new line is not created' do
+      driver.get(URL)
+      driver.find_element(id: :open).click
+
+      last_row_before_add = driver.find_elements(xpath: '//tbody/tr').count
+      driver.find_element(id: :add).click
+      last_row_after_add = driver.find_elements(xpath: '//tbody/tr').count
+
+      expect(last_row_after_add).to eq(last_row_before_add)
+    end
+  end
 end
 
 describe 'Form' do
