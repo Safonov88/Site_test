@@ -15,7 +15,6 @@ class Site
   def add_to_table(values)
     @driver.find_element(id: :open).click
 
-
     values.each do |value|
       @driver.find_element(id: :name).send_keys (value['name'])
       @driver.find_element(id: :count).send_keys (value['count'])
