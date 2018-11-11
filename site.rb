@@ -28,9 +28,11 @@ class Site
     end
   end
 
-  def clear_text
-    id = [:name, :count, :price]
+  private
 
-    id.map{ |i| @driver.find_element(id: i).clear }
+  def reset_form
+    array_id = [:name, :count, :price]
+
+    array_id.map{ |id| @driver.find_element(id: id).clear }
   end
 end
