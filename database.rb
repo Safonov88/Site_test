@@ -10,7 +10,7 @@ class Database
       dbname: ENV['DB_NAME'])
   end
 
-  def write_to_db(shoping_list)
+  def write(shoping_list)
     value = shoping_list.map { |row| "('#{row[0]}', #{row[1]}, #{row[2]})" }.join(',')
     @db.exec("INSERT INTO shopping_list (name, count, price) VALUES #{value}")
   end
