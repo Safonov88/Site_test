@@ -8,10 +8,6 @@ describe 'Correct worcking table to the site' do
   let(:value) { [{ 'name' => '', 'count' => '', 'price' => '' }] }
   let(:driver) { Selenium::WebDriver.for :chrome }
 
-  after(:each) do
-    driver.close
-  end
-
   context 'when values are inserted correctly into the table' do
     it 'checks name value in the table' do
       value.first['name'] = 'testname'
@@ -85,6 +81,17 @@ describe 'Correct worcking table to the site' do
       driver.find_element(id: :price).send_keys(123456789.98)
 
       expect{ driver.find_element(xpath: "//body/a[2]").click }.to change{ driver.find_element(id: :price).attribute('value') }.from(123456789.98).to be_empty
+    end
+  end
+
+  context 'when press button "удалить" to row number 2' do
+    it 'checks delete row number 2' do
+      driver.get('http://tereshkova.test.kavichki.com/')
+
+      row_number_two = driver.find_element(xpath: "//tr[2]").text
+      row_number_three = driver.find_element(xpath: "//tr[3]").text
+
+      expect{ driver.find_element(xpath: '//tr[2]/td[4]').click }.to change{ driver.find_element(xpath: "//tr[2]").text }.from(row_number_two).to(row_number_three)
     end
   end
 end
