@@ -8,36 +8,38 @@ describe 'UI site testing' do
   let(:value) { [{ 'name' => '', 'count' => '', 'price' => '' }] }
   let(:driver) { Selenium::WebDriver.for :chrome }
 
-  before(:each) { driver.get(URL) }
-
   URL = 'http://tereshkova.test.kavichki.com/'
+
+  before(:each) { driver.get(URL) }
 
   context 'when values added to table' do
     it 'checks that the name is in the name field' do
-      value.first['name'] = 'testname'
-      site.add_to_table(value)
+      driver.find_element(id: :open).click
+      driver.find_element(id: :name).send_keys('testname')
+      driver.find_element(id: :add).click
 
-      expect(site.load_table.last[0]).to eq('testname')
+      expect(driver.find_element(xpath: '//tr[5]/td[1]').text).to eq('testname')
     end
 
     it 'checks that the count is in the count field' do
-      value.first['count'] = 1234567890
-      site.add_to_table(value)
+      driver.find_element(id: :open).click
+      driver.find_element(id: :count).send_keys(123456789)
+      driver.find_element(id: :add).click
 
-      expect(site.load_table.last[1]).to eq(123456789)
+      expect(driver.find_element(xpath: '//tr[5]/td[2]').text).to eq(123456789)
     end
 
     it 'checks that the price is in the price field' do
-      value.first['price'] = 1234567890.98
-      site.add_to_table(value)
+      driver.find_element(id: :open).click
+      driver.find_element(id: :price).send_keys(1234567890.98)
+      driver.find_element(id: :add).click
 
-      expect(site.load_table.last[2]).to eq(1234567890.98)
+      expect(driver.find_element(xpath: '//tr[5]/td[3]').text).to eq(1234567890.98)
     end
   end
 
   context 'when press button "удалить" to row number 2' do
     it 'checks delete row number 2' do
-
       row_number_two = driver.find_element(xpath: "//tr[2]").text
       row_number_three = driver.find_element(xpath: "//tr[3]").text
 
