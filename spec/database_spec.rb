@@ -21,4 +21,12 @@ describe 'Database' do
       pg.exec("SELECT * FROM shopping_list WHERE name = 'testname' AND count = 123456789 AND price = 1234.98").any?
       ).to be_truthy
   end
+
+  it 'checks table is clear' do
+    pg.exec("INSERT INTO shopping_list (name, count, price) VALUES ('testname', 123456789, 1234.98)")
+
+    expect{ db.clear_table }
+      .to change{ pg.exec("SELECT * from shopping_list").any? }
+      .from(be_truthy).to(be_falsey)
+  end
 end
