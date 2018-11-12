@@ -10,7 +10,7 @@ describe 'Site' do
     expect(site.load_table).not_to eq([])
   end
 
-  it 'added row to table' do
+  it 'checks added row to table' do
     value = [{'name' => 'testname', 'count' => 123456789, 'price' => 123456789.98}]
 
     site.add_to_table(value)
@@ -18,7 +18,7 @@ describe 'Site' do
     expect(site.driver.find_element(xpath: '//tbody/tr[5]')).to be
   end
 
-  it 'clears text fields in form' do
+  it 'checks clear text fields in form' do
     site.driver.find_element(id: :open).click
 
     name = site.driver.find_element(id: :name)
