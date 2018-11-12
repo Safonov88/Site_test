@@ -8,6 +8,8 @@ describe 'UI site testing' do
   let(:value) { [{ 'name' => '', 'count' => '', 'price' => '' }] }
   let(:driver) { Selenium::WebDriver.for :chrome }
 
+  before(:each) { driver.get(URL) }
+
   URL = 'http://tereshkova.test.kavichki.com/'
 
   context 'when values added to table' do
@@ -35,7 +37,6 @@ describe 'UI site testing' do
 
   context 'when press button "удалить" to row number 2' do
     it 'checks delete row number 2' do
-      driver.get(URL)
 
       row_number_two = driver.find_element(xpath: "//tr[2]").text
       row_number_three = driver.find_element(xpath: "//tr[3]").text
@@ -48,7 +49,6 @@ describe 'UI site testing' do
 
   context 'when submited empty values' do
     it 'checks that a new line is not created' do
-      driver.get(URL)
       driver.find_element(id: :open).click
 
       last_row_before_add = driver.find_elements(xpath: '//tbody/tr').count
