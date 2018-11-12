@@ -2,6 +2,7 @@ require 'selenium-webdriver'
 
 class Site
   URL = 'http://tereshkova.test.kavichki.com/'
+  attr_reader :driver
 
   def initialize(driver)
     @driver = driver
