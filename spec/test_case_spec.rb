@@ -11,6 +11,7 @@ describe 'UI site testing' do
   URL = 'http://tereshkova.test.kavichki.com/'
 
   before(:each) { driver.get(URL) }
+  after(:each) { driver.quit }
 
   context 'when values added to table' do
     it 'checks that the name is in the name field' do
@@ -65,6 +66,7 @@ end
 describe 'Form' do
   let(:value) { [{ 'name' => '', 'count' => '', 'price' => '' }] }
   let(:driver) { Selenium::WebDriver.for :chrome }
+  after(:each) { driver.quit }
 
   context 'when submited' do
     before(:each) do
